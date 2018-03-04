@@ -1,0 +1,28 @@
+{
+	"ImportPath": "github.com/Frizz925/barawa-bot",
+	"GoVersion": "go1.10",
+	"GodepVersion": "v80",
+	"Packages": [
+		"./..."
+	],
+	"Deps": [
+		{
+			"ImportPath": "github.com/joho/godotenv",
+			"Comment": "v1.2.0-10-g6bb0851",
+			"Rev": "6bb08516677f8c8274c557fc801bee9ab564ab2c"
+		},
+		{
+			"ImportPath": "github.com/line/line-bot-sdk-go/linebot",
+			"Comment": "1.0.0-91-gd571964",
+			"Rev": "d5719649979e73fbf3551b3f277fd6d8f85c887b"
+		},
+		{
+			"ImportPath": "golang.org/x/net/context",
+			"Rev": "22ae77b79946ea320088417e4d50825671d82d57"
+		},
+		{
+			"ImportPath": "golang.org/x/net/context/ctxhttp",
+			"Rev": "22ae77b79946ea320088417e4d50825671d82d57"
+		}
+	]
+}
