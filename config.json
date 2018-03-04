@@ -1,0 +1,11 @@
+{
+	"message": {
+		"YesOrNo": {
+			"pattern": "^apakah ",
+			"answers": {
+				"yes": "Ya",
+				"no": "No"
+			}
+		}
+	}
+}
