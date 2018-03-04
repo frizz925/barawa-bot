@@ -15,6 +15,3 @@
 
 # Coverage files
 coverage.*
-
-# Vendor files
-vendor/
