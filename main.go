@@ -6,7 +6,7 @@ import (
 	"net/http"
 	"os"
 
-	messageHandler "github.com/frizz925/barawa-bot/handler/message"
+	messageHandler "github.com/Frizz925/barawa-bot/handler/message"
 	"github.com/joho/godotenv"
 	"github.com/line/line-bot-sdk-go/linebot"
 )
