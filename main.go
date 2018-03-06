@@ -26,7 +26,10 @@ func getenv(args ...string) string {
 
 func handleMessageEvent(bot *linebot.Client, event *linebot.Event) {
 	message := event.Message
-	textMessage := message.(*linebot.TextMessage)
+	textMessage, ok := message.(*linebot.TextMessage)
+	if !ok {
+		return
+	}
 	response := messageHandler.ProcessMessage(textMessage.Text)
 	if len(response) > 0 {
 		reply := linebot.NewTextMessage(response)
