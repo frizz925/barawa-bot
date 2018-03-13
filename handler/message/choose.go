@@ -1,7 +1,8 @@
 package message
 
 import (
-	"math/rand"
+	"crypto/rand"
+	"math/big"
 	"strings"
 )
 
@@ -17,7 +18,8 @@ func (h *ChooseHandler) handle(message string) string {
 	choices := strings.Split(message, delimiter)
 	choicesLength := len(choices)
 
-	choice := choices[rand.Intn(choicesLength)]
+	idx, _ := rand.Int(rand.Reader, big.NewInt(int64(choicesLength)))
+	choice := choices[idx.Int64()]
 	choice = strings.TrimSpace(choice)
 	choice = strings.Trim(choice, "?!.")
 

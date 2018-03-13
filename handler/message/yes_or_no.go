@@ -1,7 +1,8 @@
 package message
 
 import (
-	"math/rand"
+	"crypto/rand"
+	"math/big"
 	"strings"
 )
 
@@ -10,7 +11,8 @@ type YesOrNoHandler struct {
 }
 
 func (h *YesOrNoHandler) handle(message string) string {
-	seed := rand.Float64()
+	n, _ := rand.Int(rand.Reader, big.NewInt(int64(100)))
+	seed := float64(n.Int64()) / 100
 	if seed > 0.5 {
 		return "Ya"
 	}

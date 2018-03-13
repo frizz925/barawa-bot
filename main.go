@@ -3,10 +3,8 @@ package main
 import (
 	"fmt"
 	"log"
-	"math/rand"
 	"net/http"
 	"os"
-	"time"
 
 	messageHandler "github.com/Frizz925/barawa-bot/handler/message"
 	"github.com/joho/godotenv"
@@ -62,7 +60,6 @@ func createWebhookHandler(bot *linebot.Client) func(http.ResponseWriter, *http.R
 
 func main() {
 	godotenv.Load()
-	rand.Seed(time.Now().UnixNano())
 
 	channelSecret := getenv("CHANNEL_SECRET")
 	channelToken := getenv("CHANNEL_TOKEN")
