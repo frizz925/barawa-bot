@@ -1,9 +1,9 @@
 package message
 
 import (
-	"crypto/rand"
-	"math/big"
 	"strings"
+
+	"github.com/Frizz925/barawa-bot/lib"
 )
 
 type YesOrNoHandler struct {
@@ -11,8 +11,7 @@ type YesOrNoHandler struct {
 }
 
 func (h *YesOrNoHandler) handle(message string) string {
-	n, _ := rand.Int(rand.Reader, big.NewInt(int64(100)))
-	seed := float64(n.Int64()) / 100
+	seed := float64(lib.RandFromString(message)%100) / 100
 	if seed > 0.5 {
 		return "Ya"
 	}

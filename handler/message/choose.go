@@ -1,9 +1,9 @@
 package message
 
 import (
-	"crypto/rand"
-	"math/big"
 	"strings"
+
+	"github.com/Frizz925/barawa-bot/lib"
 )
 
 type ChooseHandler struct{}
@@ -18,8 +18,8 @@ func (h *ChooseHandler) handle(message string) string {
 	choices := strings.Split(message, delimiter)
 	choicesLength := len(choices)
 
-	idx, _ := rand.Int(rand.Reader, big.NewInt(int64(choicesLength)))
-	choice := choices[idx.Int64()]
+	idx := lib.RandFromString(message) % int64(choicesLength)
+	choice := choices[idx]
 	choice = strings.TrimSpace(choice)
 	choice = strings.Trim(choice, "?!.")
 
