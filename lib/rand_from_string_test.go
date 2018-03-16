@@ -5,7 +5,7 @@ import (
 )
 
 func TestRandFromString(t *testing.T) {
-	result := RandFromString("abc")
+	result := RandFromString("abc", 0)
 	if result != 294 {
 		panic("Result from RandFromString(\"abc\") should be 294")
 	}

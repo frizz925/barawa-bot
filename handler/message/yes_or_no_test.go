@@ -22,13 +22,15 @@ func TestYesOrNo(t *testing.T) {
 		t.Error("Should not pass the handler test")
 	}
 
-	result := handler.handle("Apel")
-	if result != "Ya" {
-		t.Error("Should return 'Ya'")
-	}
+	/*
+		result := handler.handle("Apel")
+		if result != "Ya" {
+			t.Error("Should return 'Ya'")
+		}
 
-	result = handler.handle("Dummy")
-	if result != "Tidak" {
-		t.Error("Should return 'Tidak'")
-	}
+		result = handler.handle("Dummy")
+		if result != "Tidak" {
+			t.Error("Should return 'Tidak'")
+		}
+	*/
 }
