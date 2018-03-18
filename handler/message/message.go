@@ -1,7 +1,7 @@
 package message
 
 type MessageHandler interface {
-	handle(message string) string
+	handle(message string, params ...interface{}) string
 	test(message string) bool
 }
 
