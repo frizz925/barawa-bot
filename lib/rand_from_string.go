@@ -11,7 +11,7 @@ func RandFromString(params ...interface{}) int64 {
 	if len(params) >= 2 {
 		result += int64(params[1].(int))
 	} else {
-		result += time.Now().Unix() % 3600
+		result += (time.Now().Unix() / 1000) % 3600
 	}
 	return result
 }
