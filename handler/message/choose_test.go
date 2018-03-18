@@ -1,6 +1,9 @@
 package message
 
-import "testing"
+import (
+	"fmt"
+	"testing"
+)
 
 func TestChoose(t *testing.T) {
 	handler := ChooseHandler{}
@@ -19,13 +22,20 @@ func TestChoose(t *testing.T) {
 		t.Error("Should not pass the handler test")
 	}
 
-	message = "Apakah apel atau jeruk?"
+	MessageTest(t, &handler, "Apakah apel atau jeruk?", []string{"apel", "jeruk"})
+	MessageTest(t, &handler, "Apakah apel, jeruk, atau mangga?", []string{"apel", "jeruk", "mangga"})
+}
+
+func MessageTest(t *testing.T, handler MessageHandler, message string, choices []string) {
 	if !handler.test(message) {
-		t.Error("Should pass the handler test")
+		t.Error(fmt.Sprintf("\"%s\" should pass the handler test", message))
 	}
 
-	result := handler.handle(message)
-	if result != "apel" && result != "jeruk" {
-		t.Error("Should return either 'apel' or 'jeruk'")
+	result := handler.handle(message, 0)
+	for _, choice := range choices {
+		if result == choice {
+			return
+		}
 	}
+	t.Error(fmt.Sprintf("No matching choice returned from \"%s\"", message))
 }
