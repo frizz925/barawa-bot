@@ -65,7 +65,7 @@ func main() {
 	channelToken := getenv("CHANNEL_TOKEN")
 	bot, err := linebot.New(channelSecret, channelToken)
 
-	host := getenv("HOST", "0.0.0.0")
+	host := getenv("HOST", "")
 	port := getenv("PORT", "8080")
 	address := fmt.Sprintf("%s:%s", host, port)
 
