@@ -154,6 +154,16 @@ func (h *PrayerTimeHandler) handleResponse(x *Response) string {
 }
 
 func (h *PrayerTimeHandler) test(message string) bool {
-	match, _ := regexp.Match(`^kapan waktu (azan|adzan|solat|salat|buka puasa)[?]?$`, []byte(strings.ToLower(message)))
+	suffixes := []string{
+		"azan",
+		"adzan",
+		"solat",
+		"salat",
+		"buka puasa",
+		"sahur",
+		"imsak",
+		"imsyak",
+	}
+	match, _ := regexp.Match(fmt.Sprintf(`^kapan waktu (%s)[?]?$`, strings.Join(suffixes, "|")), []byte(strings.ToLower(message)))
 	return match
 }
