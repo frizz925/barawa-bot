@@ -40,3 +40,8 @@
 [prune]
   go-tests = true
   unused-packages = true
+
+[metadata.heroku]
+  root-package = "github.com/Frizz925/barawa-bot"
+  go-version = "1.10"
+  install = [ "./..." ]
