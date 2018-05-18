@@ -51,7 +51,7 @@ func createWebhookHandler(bot *linebot.Client) func(http.ResponseWriter, *http.R
 		for _, event := range events {
 			switch event.Type {
 			case linebot.EventTypeMessage:
-				handleMessageEvent(bot, event)
+				handleMessageEvent(bot, &event)
 				break
 			}
 		}
