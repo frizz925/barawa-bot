@@ -11,6 +11,7 @@ type BaseMessageHandler struct {
 var handlers = []MessageHandler{
 	&ChooseHandler{},
 	&YesOrNoHandler{},
+	&PrayerTimeHandler{},
 }
 
 func ProcessMessage(message string) string {
