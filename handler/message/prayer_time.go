@@ -47,14 +47,18 @@ func (h *PrayerTimeHandler) setupRequest(client *http.Client, req *http.Request,
 	}
 }
 
+func (h *PrayerTimeHandler) getTimeNow() time.Time {
+	loc, _ := time.LoadLocation("Asia/Jakarta")
+	now := time.Now().In(loc)
+	if now.Hour() > 20 {
+		now = now.Add(time.Duration(12) * time.Hour)
+	}
+	return now
+}
+
 func (h *PrayerTimeHandler) handle(message string, params ...interface{}) string {
 	if h.cache != nil {
 		return h.handleResponse(h.cache)
-	}
-	now := time.Now()
-	// This code is redundant but I'm too lazy to create a function for it :P
-	if now.Hour() > 20 {
-		now = now.Add(time.Duration(12) * time.Hour)
 	}
 	jar, _ := cookiejar.New(nil)
 	client := &http.Client{
@@ -99,8 +103,9 @@ func (h *PrayerTimeHandler) handle(message string, params ...interface{}) string
 
 	doc, _ = goquery.NewDocumentFromReader(res.Body)
 	yParam, _ := doc.Find("option[data-val='Kota Jakarta']").Attr("value")
-
 	q.Set("y", yParam)
+
+	now := h.getTimeNow()
 	q.Set("bln", strconv.Itoa(int(now.Month())))
 	q.Set("thn", strconv.Itoa(now.Year()))
 	body = q.Encode()
