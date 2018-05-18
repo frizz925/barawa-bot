@@ -7,6 +7,7 @@ import (
 	"path/filepath"
 	"strings"
 	"testing"
+	"time"
 )
 
 func TestPrayerTime(t *testing.T) {
@@ -31,7 +32,8 @@ func TestPrayerTime(t *testing.T) {
 	}
 	x := Response{}
 	json.Unmarshal(data, &x)
-	res := h.handleResponse(&x)
+	loc, _ := time.LoadLocation("Asia/Jakarta")
+	res := h.handleResponse(&x, time.Date(2018, 05, 18, 0, 0, 0, 0, loc))
 	if !strings.Contains(res, "Maghrib: 17:47") {
 		t.Error("Invalid response")
 	}

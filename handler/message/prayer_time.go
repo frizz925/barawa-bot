@@ -57,8 +57,9 @@ func (h *PrayerTimeHandler) getTimeNow() time.Time {
 }
 
 func (h *PrayerTimeHandler) handle(message string, params ...interface{}) string {
+	now := h.getTimeNow()
 	if h.cache != nil {
-		return h.handleResponse(h.cache)
+		return h.handleResponse(h.cache, now)
 	}
 	jar, _ := cookiejar.New(nil)
 	client := &http.Client{
@@ -105,7 +106,6 @@ func (h *PrayerTimeHandler) handle(message string, params ...interface{}) string
 	yParam, _ := doc.Find("option[data-val='Kota Jakarta']").Attr("value")
 	q.Set("y", yParam)
 
-	now := h.getTimeNow()
 	q.Set("bln", strconv.Itoa(int(now.Month())))
 	q.Set("thn", strconv.Itoa(now.Year()))
 	body = q.Encode()
@@ -128,16 +128,11 @@ func (h *PrayerTimeHandler) handle(message string, params ...interface{}) string
 		return h.handleRequestError(errors.New("Server returns data with 0 status"))
 	}
 	h.cache = &x
-	return h.handleResponse(&x)
+	return h.handleResponse(&x, now)
 }
 
-func (h *PrayerTimeHandler) handleResponse(x *Response) string {
-	localTime := time.Now().Local()
-	hour := localTime.Hour()
-	if hour >= 20 {
-		localTime = localTime.Add(time.Duration(12) * time.Hour)
-	}
-	date := localTime.Format("2006-01-02")
+func (h *PrayerTimeHandler) handleResponse(x *Response, now time.Time) string {
+	date := now.Format("2006-01-02")
 	schedules := x.Data.(map[string]interface{})[date]
 	response := make([]string, 0)
 	keys := []string{
