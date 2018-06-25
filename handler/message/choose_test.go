@@ -24,6 +24,7 @@ func TestChoose(t *testing.T) {
 
 	MessageTest(t, &handler, "Apakah apel atau jeruk?", []string{"apel", "jeruk"})
 	MessageTest(t, &handler, "Apakah apel, jeruk, atau mangga?", []string{"apel", "jeruk", "mangga"})
+	MessageTest(t, &handler, "apakah a, b, atau c", []string{"a", "b", "c"})
 }
 
 func MessageTest(t *testing.T, handler MessageHandler, message string, choices []string) {
