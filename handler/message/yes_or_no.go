@@ -11,7 +11,7 @@ type YesOrNoHandler struct {
 }
 
 func (h *YesOrNoHandler) handle(message string, params ...interface{}) string {
-	seed := float64(lib.RandFromString(message)%100) / 100
+	seed := float64(lib.RandFromString(strings.ToLower(message))%100) / 100
 	if seed > 0.5 {
 		return "Ya"
 	}
