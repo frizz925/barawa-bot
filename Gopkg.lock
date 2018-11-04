@@ -2,43 +2,80 @@
 
 
 [[projects]]
+  digest = "1:a62f6ed230a8cd138a9efbe718e7d0b0294f139266f5f55cd942769a9aac8de2"
   name = "github.com/PuerkitoBio/goquery"
   packages = ["."]
-  revision = "a86ea073017a6beddef78c8659e7224e8ca634b0"
-  version = "v1.4.0"
+  pruneopts = "UT"
+  revision = "dc2ec5c7ca4d9aae063b79b9f581dd3ea6afd2b2"
+  version = "v1.4.1"
 
 [[projects]]
+  digest = "1:66b3310cf22cdc96c35ef84ede4f7b9b370971c4025f394c89a2638729653b11"
   name = "github.com/andybalholm/cascadia"
   packages = ["."]
+  pruneopts = "UT"
   revision = "901648c87902174f774fac311d7f176f8647bdaa"
   version = "v1.0.0"
 
 [[projects]]
-  name = "github.com/joho/godotenv"
+  digest = "1:fed1f537c2f1269fe475a8556c393fe466641682d73ef8fd0491cd3aa1e47bad"
+  name = "github.com/certifi/gocertifi"
   packages = ["."]
-  revision = "a79fa1e548e2c689c241d10173efd51e5d689d5b"
-  version = "v1.2.0"
+  pruneopts = "UT"
+  revision = "deb3ae2ef2610fde3330947281941c562861188b"
+  version = "2018.01.18"
 
 [[projects]]
+  digest = "1:e51147e761aa8b6769e05e586c7012eb221c8be72fbc68a4340a53b974e67b9f"
+  name = "github.com/getsentry/raven-go"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "3033899c76deb3fb6570d9c4074d00443aeab88f"
+  version = "v0.1.0"
+
+[[projects]]
+  digest = "1:ecd9aa82687cf31d1585d4ac61d0ba180e42e8a6182b85bd785fcca8dfeefc1b"
+  name = "github.com/joho/godotenv"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "23d116af351c84513e1946b527c88823e476be13"
+  version = "v1.3.0"
+
+[[projects]]
+  digest = "1:f0de4e6eed698cd7e14a8ef6d953846d22cebc4692a8bcd986ff93f9e3eb7023"
   name = "github.com/line/line-bot-sdk-go"
   packages = ["linebot"]
-  revision = "3a7d66f5efce6ac202f650134609f9d6d163a640"
-  version = "1.0.0"
+  pruneopts = "UT"
+  revision = "94192b969c4a46d86c3a41a4bc1a896a2057ae27"
+  version = "v1.3.0"
+
+[[projects]]
+  digest = "1:40e195917a951a8bf867cd05de2a46aaf1806c50cf92eebf4c16f78cd196f747"
+  name = "github.com/pkg/errors"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "645ef00459ed84a119197bfb8d8205042c6df63d"
+  version = "v0.8.0"
 
 [[projects]]
   branch = "master"
+  digest = "1:1a1ecfa7b54ca3f7a0115ab5c578d7d6a5d8b605839c549e80260468c42f8be7"
   name = "golang.org/x/net"
   packages = [
-    "context",
-    "context/ctxhttp",
     "html",
-    "html/atom"
+    "html/atom",
   ]
-  revision = "2491c5de3490fced2f6cff376127c667efeed857"
+  pruneopts = "UT"
+  revision = "c10e9556a7bc0e7c942242b606f0acf024ad5d6a"
 
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "53993aacfd2cba52731d6378f0bf440be4ab1465924fb344612de36ddf377339"
+  input-imports = [
+    "github.com/PuerkitoBio/goquery",
+    "github.com/getsentry/raven-go",
+    "github.com/joho/godotenv",
+    "github.com/line/line-bot-sdk-go/linebot",
+  ]
   solver-name = "gps-cdcl"
   solver-version = 1
