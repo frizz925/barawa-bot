@@ -19,6 +19,9 @@ func main() {
 	channelToken := getenv("CHANNEL_TOKEN")
 	bot, err := linebot.New(channelSecret, channelToken)
 
+	sentryDsn := getenv("SENTRY_DSN")
+	raven.SetDSN(sentryDsn)
+
 	host := getenv("HOST", "")
 	port := getenv("PORT", "8080")
 	address := fmt.Sprintf("%s:%s", host, port)
@@ -74,7 +77,7 @@ func handleMessageEvent(bot *linebot.Client, event *linebot.Event) {
 	response := messageHandler.ProcessMessage(textMessage.Text)
 	if len(response) > 0 {
 		reply := linebot.NewTextMessage(response)
-		logReply(event.Source, "reply", reply.ID, reply.Text)
+		logReply(event.Source, "reply", textMessage.ID, reply.Text)
 		_, err := bot.ReplyMessage(event.ReplyToken, reply).Do()
 		if err != nil {
 			log.Panicln(err)
