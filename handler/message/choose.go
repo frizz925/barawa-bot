@@ -8,6 +8,7 @@ import (
 	"github.com/Frizz925/barawa-bot/lib"
 )
 
+// ChooseHandler Placeholder comment
 type ChooseHandler struct{}
 
 func (h *ChooseHandler) handle(message string, params ...interface{}) string {
@@ -16,10 +17,7 @@ func (h *ChooseHandler) handle(message string, params ...interface{}) string {
 	prefixLength := len(prefix)
 
 	message = message[prefixLength:]
-	choices := SplitToChoices(message, delimiters)
-	if len(choices) <= 0 {
-		return ""
-	}
+	choices := splitToChoices(message, delimiters)
 	choicesLength := len(choices)
 
 	idx := lib.RandFromString(message, params...) % int64(choicesLength)
@@ -44,12 +42,9 @@ func (h *ChooseHandler) test(message string) bool {
 	return strings.Contains(message, delimiter)
 }
 
-func SplitToChoices(text string, delimiters []string) []string {
+func splitToChoices(text string, delimiters []string) []string {
 	regexpPattern := fmt.Sprintf("(%s)", strings.Join(delimiters, "|"))
 	matcher := regexp.MustCompile(regexpPattern)
-	if !matcher.MatchString(text) {
-		return nil
-	}
 	matches := matcher.Split(text, -1)
 	return matches
 }

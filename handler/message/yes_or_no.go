@@ -6,6 +6,7 @@ import (
 	"github.com/Frizz925/barawa-bot/lib"
 )
 
+// YesOrNoHandler Placeholder comment
 type YesOrNoHandler struct {
 	*BaseMessageHandler
 }
