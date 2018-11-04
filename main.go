@@ -12,6 +12,11 @@ import (
 	"github.com/line/line-bot-sdk-go/linebot"
 )
 
+var (
+	logger      = log.New(os.Stdout, "", 0)
+	errorLogger = log.New(os.Stderr, "", 0)
+)
+
 func main() {
 	godotenv.Load()
 
@@ -50,7 +55,7 @@ func createWebhookHandler(bot *linebot.Client) func(http.ResponseWriter, *http.R
 	return raven.RecoveryHandler(func(w http.ResponseWriter, r *http.Request) {
 		events, err := bot.ParseRequest(r)
 		if err != nil {
-			log.Println(err)
+			errLogger.Println(err)
 			return
 		}
 
@@ -67,7 +72,7 @@ func createWebhookHandler(bot *linebot.Client) func(http.ResponseWriter, *http.R
 func handleMessageEvent(bot *linebot.Client, event *linebot.Event) {
 	err := logMessageEvent(event)
 	if err != nil {
-		log.Println(err)
+		errorLogger.Println(err)
 	}
 	message := event.Message
 	textMessage, ok := message.(*linebot.TextMessage)
@@ -80,7 +85,7 @@ func handleMessageEvent(bot *linebot.Client, event *linebot.Event) {
 		logReply(event.Source, "reply", textMessage.ID, reply.Text)
 		_, err := bot.ReplyMessage(event.ReplyToken, reply).Do()
 		if err != nil {
-			log.Panicln(err)
+			errorLogger.Panicln(err)
 		}
 	}
 }
@@ -116,11 +121,11 @@ func logMessageEvent(event *linebot.Event) error {
 }
 
 func logMessage(source *linebot.EventSource, messageType string, id string, text string) {
-	log.Println(formatMessage(source, "<-", messageType, id, text))
+	logger.Println(formatMessage(source, "<-", messageType, id, text))
 }
 
 func logReply(source *linebot.EventSource, messageType string, id string, text string) {
-	log.Println(formatMessage(source, "->", messageType, id, text))
+	logger.Println(formatMessage(source, "->", messageType, id, text))
 }
 
 func formatMessage(source *linebot.EventSource, prefix string, messageType string, id string, text string) string {
