@@ -55,7 +55,7 @@ func createWebhookHandler(bot *linebot.Client) func(http.ResponseWriter, *http.R
 	return raven.RecoveryHandler(func(w http.ResponseWriter, r *http.Request) {
 		events, err := bot.ParseRequest(r)
 		if err != nil {
-			errLogger.Println(err)
+			errorLogger.Println(err)
 			return
 		}
 
