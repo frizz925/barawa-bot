@@ -31,7 +31,10 @@ func TestPrayerTime(t *testing.T) {
 		t.Error(err)
 	}
 	x := Response{}
-	json.Unmarshal(data, &x)
+	err = json.Unmarshal(data, &x)
+	if err != nil {
+		t.Error(err)
+	}
 	loc, _ := time.LoadLocation("Asia/Jakarta")
 	res := h.handleResponse(&x, time.Date(2018, 05, 18, 0, 0, 0, 0, loc))
 	if !strings.Contains(res, "Maghrib: 17:47") {

@@ -123,7 +123,10 @@ func (h *PrayerTimeHandler) handle(message string, params ...interface{}) string
 		return h.handleParseError(err)
 	}
 	x := Response{}
-	json.Unmarshal(data, &x)
+	err = json.Unmarshal(data, &x)
+	if err != nil {
+		return h.handleParseError(errors.New("Failed to parse server response"))
+	}
 	if x.Status != 1 {
 		return h.handleRequestError(errors.New("Server returns data with 0 status"))
 	}
